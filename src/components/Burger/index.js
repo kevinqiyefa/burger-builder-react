@@ -8,6 +8,11 @@ const burger = props => {
       return <BurgerIngredient key={igKey + i} type={igKey} />;
     });
   });
+  transformedIngredients = [].concat(...transformedIngredients);
+
+  if (!transformedIngredients.length) {
+    transformedIngredients = <p>Please start adding ingredients!</p>;
+  }
   return (
     <div className="Burger">
       <BurgerIngredient type="bread-top" />
