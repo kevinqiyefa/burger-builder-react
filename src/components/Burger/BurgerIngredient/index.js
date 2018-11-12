@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import './style.css';
 import PropTypes from 'prop-types';
 
-const r = require('react');
-
-console.log(r.version);
-
 class BurgerIngredient extends Component {
   render() {
     let ingredient = null;
