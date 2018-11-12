@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from '../Logo';
-
+import NavigationItems from '../NavigationItems';
 import './style.css';
 
 const toolbar = props => (
@@ -9,7 +9,9 @@ const toolbar = props => (
     <div className="LogoSection">
       <Logo />
     </div>
-    <nav>...</nav>
+    <nav>
+      <NavigationItems />
+    </nav>
   </header>
 );
 
