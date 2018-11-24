@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import axios from '../../../axios-orders';
 import Order from '../../../components/Order';
+import withErrorHandler from '../../../hoc/withErrorHandler';
 
 class Orders extends Component {
   state = {
@@ -30,11 +31,16 @@ class Orders extends Component {
   render() {
     return (
       <div>
-        <Order />
-        <Order />
+        {this.state.orders.map(order => (
+          <Order
+            key={order.id}
+            ingredients={order.ingredients}
+            price={order.price}
+          />
+        ))}
       </div>
     );
   }
 }
 
-export default Orders;
+export default withErrorHandler(Orders, axios);
