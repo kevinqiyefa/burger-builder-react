@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Order from '../../../components';
+import Order from '../../../components/Order';
 
 class Orders extends Component {
   state = {
@@ -17,3 +17,5 @@ class Orders extends Component {
     );
   }
 }
+
+export default Orders;
