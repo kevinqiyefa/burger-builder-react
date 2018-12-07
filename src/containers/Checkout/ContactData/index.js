@@ -6,7 +6,7 @@ import axios from '../../../axios-orders';
 import Input from '../../../components/UI/Input';
 import './style.css';
 import withErrorHandler from '../../../hoc/withErrorHandler';
-import * as actions from '../../../store/actions/index';
+import { purchaseBurger } from '../../../store/actions';
 import { checkValidity } from '../../../share/checkValidity';
 
 class ContactData extends Component {
@@ -113,7 +113,7 @@ class ContactData extends Component {
       orderData: formData,
       userId: this.props.userId
     };
-    this.props.onOrderBurger(order, this.props.token);
+    this.props.purchaseBurger(order, this.props.token);
   };
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -191,14 +191,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onOrderBurger: (orderData, token) =>
-      dispatch(actions.purchaseBurger(orderData, token))
-  };
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { purchaseBurger }
 )(withErrorHandler(ContactData, axios));

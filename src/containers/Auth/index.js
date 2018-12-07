@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Button from '../../components/UI/Button';
 import Input from '../../components/UI/Input';
-import * as actions from '../../store/actions/index';
+
+import { auth, setAuthRedirectPath } from '../../store/actions/';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Spinner from '../../components/UI/Spinner';
@@ -46,7 +47,7 @@ class Auth extends Component {
 
   componentDidMount() {
     if (!this.props.buildingBurger && this.props.authRedirectPath !== '/') {
-      this.props.onSetAuthRedirectPath();
+      this.props.setAuthRedirectPath();
     }
   }
 
@@ -68,7 +69,7 @@ class Auth extends Component {
 
   submitHandler = event => {
     event.preventDefault();
-    this.props.onAuth(
+    this.props.auth(
       this.state.authForm.email.value,
       this.state.authForm.password.value,
       this.state.isSignup
@@ -142,14 +143,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onAuth: (email, password, isSignup) =>
-      dispatch(actions.auth(email, password, isSignup)),
-    onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
-  };
-};
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { auth, setAuthRedirectPath }
 )(Auth);

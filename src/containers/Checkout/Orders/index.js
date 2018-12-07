@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import axios from '../../../axios-orders';
 import Order from '../../../components/Order';
 import withErrorHandler from '../../../hoc/withErrorHandler';
-import * as actions from '../../../store/actions/index';
+import { fetchOrders } from '../../../store/actions';
 import Spinner from '../../../components/UI/Spinner';
 
 class Orders extends Component {
   componentDidMount() {
-    this.props.onFetchOrders(this.props.token, this.props.userId);
+    this.props.fetchOrders(this.props.token, this.props.userId);
   }
 
   render() {
@@ -35,14 +35,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onFetchOrders: (token, userId) =>
-      dispatch(actions.fetchOrders(token, userId))
-  };
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { fetchOrders }
 )(withErrorHandler(Orders, axios));

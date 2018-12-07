@@ -6,7 +6,7 @@ import Layout from './components/Layout';
 import BurgerBuilder from './containers/BurgerBuilder';
 import Logout from './containers/Auth/Logout';
 import asyncComponent from './hoc/asyncComponent';
-import * as actions from './store/actions/index';
+import { authCheckState } from './store/actions';
 
 const asyncCheckout = asyncComponent(() => {
   return import('./containers/Checkout');
@@ -22,7 +22,7 @@ const asyncAuth = asyncComponent(() => {
 
 class App extends Component {
   componentDidMount() {
-    this.props.onTryAutoSignup();
+    this.props.authCheckState();
   }
 
   render() {
@@ -61,15 +61,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
-  };
-};
-
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    { authCheckState }
   )(App)
 );
