@@ -6,7 +6,9 @@
 
 > - React Router
 > - Redux
-> - Axios
+> - Redux Thunk & Saga
+> - Axios Requests
+> - Lazy Loading
 > - Jest/Enzyme
 > - Firebase
 
